@@ -14,6 +14,7 @@ abstract: |
 tags: [register, genre, style, Japanese, corpus]
 volume: X
 number: X
+twocolumn: true
 ---
 
 # Introduction
@@ -31,6 +32,8 @@ Explain (corpus-based) research that each model different aspects of register, f
 Use SFL theory to situate the studies according to their stratification level (context > content: semantics > content: lexicographer > expression: phonology > expression: phonetics).
 Next, qualify research on Japanese with respect to the whole.
 
+
+(From discussion with Asahara group) Extracting mostly syntactic features from texts ala Biber, and using (a subset of) the BCCWJ media labels to then label the 1B corpus.
 
 Tentative interpretations of register, genre, style, text type, and domain [Also see @Lee2001]:
 
@@ -65,6 +68,9 @@ Covers most NLP work.
 LLC.
 
 $\Delta$
+
+- The most notable approach of this category has been proposed by Burrows (2002) under the name ‘Delta’. First, this method calculates the z- distributions of a set of function words (originally, the 150 most frequent words). Then, for each document, the deviation of each word frequency from the norm is calculated in terms of z-score, roughly indicating whether it is used more (positive z-score) or less (negative z-score) times than the average. Finally, the Delta measure indicating the difference between a set of (training) texts written by the same author and an unknown text is the mean of the absolute differences between the z-scores for the entire function word set in the training texts and the corresponding z-scores of the unknown text. The smaller Delta measure, the greater stylistic similarity between the unknown text and the candidate author. It has been demonstrated that it is a very effect attribution method for texts of at least 1,500 words. For shorter texts the accuracy drops according to length. However, even for quite short texts, the correct author was usually included in the first five positions of the ranked authors which provides a means for reducing the set of candidate authors. [@stamatatos2009survey]
+
 
 Kin.
 
@@ -136,6 +142,7 @@ Kashino.
     -   idf is an important normalizaton concept when we are dealing with samples from spaces of register
     -   why tf-idf for collocations? because we can define it for arbitrary numbers of n, while most other statistical collocation measures are fixed to n=2 (find Croatian paper)
     -   `For general texts, one option suitable for some texts may not suitable for others. In contrast, it is easier to select options based on properties of short texts. For example, because in a short text words are generally distinct, Yu et al. (2012) show that the SVM models obtained by binary and TF-IDF feature representations give similar performance.` [@yuproduct]
+    -   [@gebre2013improving]  -- Native Language Identification
 
 
 
@@ -153,6 +160,62 @@ Kashino.
 -   software that was used
 -   data filtering/annotation (how were false hits identified, what did you do to guarantee objective coding procedures? how did you annotate your data?)
 -   choice of statistical test
+
+# Draft
+
+## Corpus Metadata as Ontology
+
+Media/metadata as ontology graph, using weighted links between different parts within a media and between media.
+Consider RDF linked data output in system. How should this be positioned relative to the JSON API? JSON-LD and triple- vs entity-centric data model. Efficient graph structure if doing home-grown (intermediate?) data store. How to efficiently model the metadata and words in the BCCWJ -- do we want to keep information on which sentence a word occurs in as an edge? DRAW!!!!!!
+Minimal discriminating difference network for final display.
+
+Media metainformation as ontology. Which parts/links are implied in the current metadata, and which can be extracted/inferred from the language data? Use https://github.com/phillord/tawny-owl to programmatically make an ontology on the fly. What kind of inferences can we do on this data with standard ontology (OWL) reasoners, and would core.logic or datalog help? Disjoint classes in OWL. collection `contains` articles. http://ontogenesis.knowledgeblog.org/1401
+What kind of automatic inferences can we make on the data with for example simple linear regression (refer to graph/LR paper -- inductive and deductive reasoning).
+The purpose of the ontology is to make the calculation of metainformation tractable, and to discover where the metainformation structure is lacking by way of comparisons of language data.
+
+http://www.w3.org/Submission/SWRL/
+http://owlapi.sourceforge.net/
+http://blog.neo4j.org/2013/08/and-now-for-something-completely.html
+
+## Language Modeling
+
+### Vector Space Models
+
+-   GETA/IMAGINE, Latent Dirichlet Analysis, Latent Semantic Indexing, word2vec
+    -   Does word2vec learn only the most useful features/vectors, is the magnitude of all vectors the same, is there any difference in density/sparsity between word vectors? Basically does DLNNET MDS? What are the limits of information necessary to arrive at satisfactory results? What kinds of distributional relationships can we get from this data, other than analogy?
+-   LM, NNLM, DLNNLM
+
+### Graph Models
+
+-   graph authority, supernode, modularity
+-   [@lahiri2013using]
+    -   in-degree, out-degree and degree
+    -   in-coreness, out-coreness and coreness (Coreness is an index given to a particular vertex based on its position in the k-core decomposition of the word net- work (Batagelj and Zaversnik, 2003))
+    -   in-neighborhood size (order 1), out- neighborhood size (order 1) and neighborhood size (order 1)
+    -   local clustering coefficient
+
+### Word Weighting
+
+-   Why tf-idf? Because it models the context dispersion as well as frequency of a word.
+-   When does the tfidf measure fail and why?
+-   What is the midrank (if the lowrank is grammatical/functional words and the highrank is topical/proper noun words)?
+-   What is the meaning of the weight? Can the functional-content scale capture/explain the real data well? Is it the only scale we want/are interested in?
+-   What is the Query in the TF-IDF model when we have no relevancy information and an actual query -- i.e. how does this even make sense/work?
+-   Termhood -- Basili et al 2001
+
+#### Register and Word Weighting
+
+Lexical domains. Lexical profiling?
+
+Semantic similarity vector spaces. What is the connection between the distance between two words and the different senses of a word? Can we link both the different senses of a word and the vector space, so that we would be able to know with which sense of a word another word cooccurs with? Can the edge between two words in any way capture the sense of the words involved/connected by the edge?
+
+What is the link between the sparse-dense scale and the diffuse-concentrated scale, as well as the functional-content scale (of TF-IDF)? When splitting words into low-middle-high classes, compare word classifications between different contexts to see if they move. Compare two concepts at once. $\alpha(A,B) = P(A|B) \cdot P(B|A)$ -> $P(A|B)$ (actually read http://en.wikipedia.org/wiki/Mutual_information) is the ratio of words in a span of $A$ that moved to the same span in $B$, while $P(B|A)$ is the ratio of words in a span of $B$ that moved to the same span in $A$ (==Mutual Information). Is this a novel/good way of measuring context similarity? We can even use sentences as the unit of IDF, where each document would then have a unique TF-IDF distribution, and we could repeat the same process as above. In effect, we would then get a contextual distribution over each word.
+
+Is it possible to compare between TF-IDF weights in a diachronic analysis? Or even a synchronic/variational one? If the context space corresponds to the N, should we split the IDF portion per (coarse) context or take the big N of the total (estimated/known) language space? Specify the relationship between context, N, and query. If N is infinite than every word has the same weight(?), so do not take a big N as an ideal number. A context-sensitive IDF is more important.
+
+Register and genre distinction as language and society distinction. Biber: functional association between linguistic forms and situations of use results in the systematic patterns of register variation.
+
+We want to uncover words with extreme or interesting distributional tendencies. Intra- and inter-media differences are critical for modeling the topic and register dependence of words. Each of these dependencies could be modeled on a scale. How do these dependencies grow/evolve with the increase of data vis-a-vis the expansion (or non-expansion) of context?
 
 # Results
 
