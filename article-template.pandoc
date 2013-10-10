@@ -21,6 +21,7 @@
 \documentclass[twoside,12pt]{article}
 
 %\usepackage[utf8]{inputenc}
+\usepackage{fixltx2e} % provides \textsubscript
 \usepackage[no-math]{fontspec}
 \newfontfeature{Microtype}{protrusion=quality;expansion=quality;tracking=true;}
 \defaultfontfeatures{Microtype,Fractions=Off,Scale=MatchLowercase,Ligatures=TeX,
@@ -34,6 +35,7 @@
 %\usepackage{luatexja-fontspec}
 \usepackage{lualatex-math}
 \usepackage{unicode-math}
+\usepackage[fleqn,tbtags]{mathtools}
 
 \usepackage[normalem]{ulem} % to underline my name
 \usepackage{hyphenat}
@@ -47,6 +49,7 @@
 \usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
 \usepackage{multicol} % Used for the two-column layout of the document
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage[linesnumbered]{algorithm2e}
 \usepackage{longtable}
 \usepackage{booktabs} % Horizontal rules in tables
 \renewcommand{\arraystretch}{.8}
