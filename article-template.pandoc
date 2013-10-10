@@ -18,7 +18,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[twoside]{article}
+\documentclass[twoside,12pt]{article}
 
 %\usepackage[utf8]{inputenc}
 \usepackage[no-math]{fontspec}
@@ -49,6 +49,7 @@
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
 \usepackage{longtable}
 \usepackage{booktabs} % Horizontal rules in tables
+\renewcommand{\arraystretch}{.8}
 \usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
 \usepackage{hyperref} % For hyperlinks in the PDF
 
@@ -93,6 +94,9 @@ $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$
 
 \begin{document}
 
+\frenchspacing % Reduces space after periods to make text more compact
+\raggedbottom % Makes all pages the height of the text on that page
+
 \maketitle % Insert title
 
 \thispagestyle{fancy} % All pages have headers and footers
@@ -125,7 +129,9 @@ $endif$
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
+$if(twocolumn)$
 \begin{multicols}{2} % Two-column layout throughout the main article text
+$endif$
 
 $body$
 
@@ -137,6 +143,8 @@ $body$
 
 %----------------------------------------------------------------------------------------
 
+$if(twocolumn)$
 \end{multicols}
+$endif$
 
 \end{document}
