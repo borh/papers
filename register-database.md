@@ -7,6 +7,8 @@ author-comment: This work was sponsored under JSPS Foreign Post-Doc Fellowship g
 author-affiliation: National Institute for Japanese Language and Linguistics
 date: \today
 abstract: |
+  Construction of an ontology of genres from media labels in the Balanced Corpus of Contemporary Written Japanese.
+  By making the calculation of media labels tractable, we take a first step towards an empirically motivated evaluation of the validity of the labels in representing genre and register differences.
   Construction of a database for profiling the register of a word or collocation.
   Merging of lexical and textual meta-information.
   Focus on integrating meta-information that is indirectly associated with register.
@@ -125,13 +127,25 @@ Instead, the relationships between the texts in a corpus and the meta-informatio
 
 Focus on meta-information.
 
+The BCCWJ carries a variety of meta-information including the author(s)' name, sex, date of birth, as well as the publishing date, publisher name, but most importantly for our purposes, up to 4 genre-related labels per document.
+These genre labels represent different conceptualizations of 'genre' depending on the sub-corpus of interest.
+
 C-Code???
+
+**Corpus**          **Genre labels**
+------------------  ------------------------------
+Books                      NDC....
+Yahoo! Blogs          Topic categories (tags)
+...
+
 
 ### Annotations
 
-Kashino.
+Kashino's Katari-kake-sei. Focus on this property over the more prevalent register discriminator of spoken-written style was chosen due to focus on the Books sub-corpus, which contains very little spoken text.
 
 # Methods
+
+The relations between different methods of extracting words and collocations from documents are diagrammed in [[]].
 
 -   operationalization of variables
 -   choice of method (e.g, diachronic vs. synchronic data, tagged vs. untagged data, etc.)
@@ -139,7 +153,7 @@ Kashino.
 -   retrieval algorithm or syntax
 
     $tf\text{-}idf$
-    -   idf is an important normalizaton concept when we are dealing with samples from spaces of register
+    -   idf is an important normalization concept when we are dealing with samples from spaces of register
     -   why tf-idf for collocations? because we can define it for arbitrary numbers of n, while most other statistical collocation measures are fixed to n=2 (find Croatian paper)
     -   `For general texts, one option suitable for some texts may not suitable for others. In contrast, it is easier to select options based on properties of short texts. For example, because in a short text words are generally distinct, Yu et al. (2012) show that the SVM models obtained by binary and TF-IDF feature representations give similar performance.` [@yuproduct]
     -   [@gebre2013improving]  -- Native Language Identification
@@ -177,6 +191,11 @@ http://www.w3.org/Submission/SWRL/
 http://owlapi.sourceforge.net/
 http://blog.neo4j.org/2013/08/and-now-for-something-completely.html
 
+-   [@garbacz2006outline]
+    -   [@orlikowski1994genre]
+    -   [@yates1992genres]
+    -   [@yates1999explicit]
+
 ## Language Modeling
 
 ### Vector Space Models
@@ -190,7 +209,7 @@ http://blog.neo4j.org/2013/08/and-now-for-something-completely.html
 -   graph authority, supernode, modularity
 -   [@lahiri2013using]
     -   in-degree, out-degree and degree
-    -   in-coreness, out-coreness and coreness (Coreness is an index given to a particular vertex based on its position in the k-core decomposition of the word net- work (Batagelj and Zaversnik, 2003))
+    -   in-coreness, out-coreness and coreness (Coreness is an index given to a particular vertex based on its position in the k-core decomposition of the word network (Batagelj and Zaversnik, 2003))
     -   in-neighborhood size (order 1), out- neighborhood size (order 1) and neighborhood size (order 1)
     -   local clustering coefficient
 
@@ -211,6 +230,45 @@ Semantic similarity vector spaces. What is the connection between the distance b
 
 What is the link between the sparse-dense scale and the diffuse-concentrated scale, as well as the functional-content scale (of TF-IDF)? When splitting words into low-middle-high classes, compare word classifications between different contexts to see if they move. Compare two concepts at once. $\alpha(A,B) = P(A|B) \cdot P(B|A)$ -> $P(A|B)$ (actually read http://en.wikipedia.org/wiki/Mutual_information) is the ratio of words in a span of $A$ that moved to the same span in $B$, while $P(B|A)$ is the ratio of words in a span of $B$ that moved to the same span in $A$ (==Mutual Information). Is this a novel/good way of measuring context similarity? We can even use sentences as the unit of IDF, where each document would then have a unique TF-IDF distribution, and we could repeat the same process as above. In effect, we would then get a contextual distribution over each word.
 
+<!-- FIXME -->
+
+\begin{equation}
+    \text{tf-idf}
+    \begin{dcases*}
+        \ge +\sigma & high\\
+        < +\sigma \land > -\sigma & mid\\
+        \le -\sigma & low
+    \end{dcases*}
+\end{equation}
+
+\vspace*{1em}
+\begin{algorithm}[H]
+   \label{alg:comparison}
+   \caption{Comparing overlap between context and tf-idf category.}
+   \SetAlgoLined
+   \RestyleAlgo{algoruled}
+   \DontPrintSemicolon
+  Define sets of context slices to compare \nllabel{A:grid}\;
+  \For{each context slice $c \in C$}{
+    Compute the $tf-idf(t, df_c)$ for $\every t \in T$ \;
+    \For{each resampling iteration}{
+      Hold—out specific samples \nllabel{A:resample} \;
+
+%      [Optional] Pre—process the data\;
+      Fit the model on the remainder\;
+
+      Predict the hold—out samples\;
+    }
+    Calculate the average performance across hold—out predictions \nllabel{A:perf}
+  }
+  Determine the optimal parameter set \nllabel{A:best}\;
+
+  Fit the final model to all the training data using the optimal
+  parameter set\;
+  \vspace*{1em}
+\end{algorithm}
+\vspace*{1em}
+
 Is it possible to compare between TF-IDF weights in a diachronic analysis? Or even a synchronic/variational one? If the context space corresponds to the N, should we split the IDF portion per (coarse) context or take the big N of the total (estimated/known) language space? Specify the relationship between context, N, and query. If N is infinite than every word has the same weight(?), so do not take a big N as an ideal number. A context-sensitive IDF is more important.
 
 Register and genre distinction as language and society distinction. Biber: functional association between linguistic forms and situations of use results in the systematic patterns of register variation.
@@ -226,4 +284,4 @@ We want to uncover words with extreme or interesting distributional tendencies. 
 
 # Conclusion
 
-Hello world.
+To be written.
