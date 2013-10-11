@@ -10,8 +10,12 @@ abstract: |
   Construction of an ontology of genres from media labels in the Balanced Corpus of Contemporary Written Japanese.
   By making the calculation of media labels tractable, we take a first step towards an empirically motivated evaluation of the validity of the labels in representing genre and register differences.
   Construction of a database for profiling the register of a word or collocation.
-  Merging of lexical and textual meta-information.
+  Merging of lexical and textual meta-information in the analysis of both words and metadata.
   Focus on integrating meta-information that is indirectly associated with register.
+  The metadata within the BCCWJ encodes knowledge (contextual factors or other facts) at the corpus, document, paragraph, and sentence levels.
+  This metadata, which encodes metadata at several linguistic levels, can be expressed in terms of both a relational database or graph structure.
+  However, it can be advantageous to be able to reason over the metadata structure when conducting analyses on linguistic data that depend on the metadata for inference.
+  One common example of the use of metadata in linguistic studies is the use of metadata on the genre or register that can provide contrasting subsets of the corpus for analysis.
 
 tags: [register, genre, style, Japanese, corpus]
 volume: X
