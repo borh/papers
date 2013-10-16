@@ -18,7 +18,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[twoside,12pt]{article}
+\documentclass[twoside,10pt]{article}
 
 %\usepackage[utf8]{inputenc}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -31,6 +31,12 @@
   ItalicFont={MinionPro_It},
   BoldItalicFont={MinionPro_BoldIt}
 ]{MinionPro_Regular}
+\setsansfont[
+  BoldFont={RobotoCondensed_Bold},
+  ItalicFont={RobotoCondensed_Italic},
+  BoldItalicFont={RobotoCondensed_BoldItalic},
+  SmallCapsFont={RobotoCondensed_Regular}
+]{RobotoCondensed_Regular}
 \usepackage{luatexja}
 %\usepackage{luatexja-fontspec}
 \usepackage{lualatex-math}
@@ -46,7 +52,8 @@
 \let\autocite=\parencite
 \bibliography{bibliography/doctors-bibliography}
 
-\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+%\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hmarginratio=1:1,top=20mm,bottom=20mm,left=5mm,right=5mm,columnsep=15pt]{geometry} % Document margins
 \usepackage{multicol} % Used for the two-column layout of the document
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
 \usepackage[linesnumbered]{algorithm2e}
@@ -60,35 +67,33 @@
 \usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
 
 \usepackage{abstract} % Allows abstract customization
-\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstractnamefont}{\large\bfseries\sffamily} % Set the "Abstract" text to bold
 \renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
 
 \usepackage{titlesec} % Allows customization of titles
-\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
-\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
-\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
-\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\titleformat{\section}[block]{\LARGE\scshape\sffamily}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\Large\scshape\sffamily}{\thesubsection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsubsection}[block]{\large\scshape\sffamily}{\thesubsubsection.}{1em}{} % Change the look of the section titles
 
 \usepackage{fancyhdr} % Headers and footers
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{$title$ \(\cdot\) $date$ \( \cdot \) $volume$, $number$} % Custom header text
-\fancyfoot[RO,LE]{\thepage} % Custom footer text
+\fancyhead[C]{\sffamily $if(shorttitle)$ $shorttitle$ $else$ $title$ $endif$\(\cdot\) $date$ \( \cdot \) $if(publisher)$ $publisher$ $if(volume)$, Vol. $volume$ $endif$ $if(number)$, No. $number$ $endif$ $endif$} % Custom header text
+\fancyfoot[RO,LE]{\sffamily\thepage} % Custom footer text
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{$title$}
-$if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$
-} % Article title
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\sffamily\textbf{$title$} $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$} % Article title
 
 \author{
 \large
 \textsc{$author$}\thanks{$author-comment$}\\[2mm] % Your name
-\normalsize $author-affiliation$ \\ % Your institution
-\normalsize \href{mailto:$email$}{$email$} % Your email address
+\normalsize\sffamily $author-affiliation$ \\ % Your institution
+\normalsize\sffamily \href{mailto:$email$}{$email$} % Your email address
 \vspace{-5mm}
 }
 \date{}
@@ -132,8 +137,8 @@ $endif$
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-$if(twocolumn)$
-\begin{multicols}{2} % Two-column layout throughout the main article text
+$if(columns)$
+\begin{multicols}{$columns$}
 $endif$
 
 $body$
@@ -146,7 +151,7 @@ $body$
 
 %----------------------------------------------------------------------------------------
 
-$if(twocolumn)$
+$if(columns)$
 \end{multicols}
 $endif$
 
