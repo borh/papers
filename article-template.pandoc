@@ -18,7 +18,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[twoside,10pt]{article}
+\documentclass[oneside,10pt]{article}
 
 %\usepackage[utf8]{inputenc}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -66,6 +66,9 @@
 \usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
 \usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
 
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
 \usepackage{abstract} % Allows abstract customization
 \renewcommand{\abstractnamefont}{\large\bfseries\sffamily} % Set the "Abstract" text to bold
 \renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
@@ -81,7 +84,8 @@
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
 \fancyhead[C]{\sffamily $if(shorttitle)$ $shorttitle$ $else$ $title$ $endif$\(\cdot\) $date$ \( \cdot \) $if(publisher)$ $publisher$ $if(volume)$, Vol. $volume$ $endif$ $if(number)$, No. $number$ $endif$ $endif$} % Custom header text
-\fancyfoot[RO,LE]{\sffamily\thepage} % Custom footer text
+\fancyfoot[C %RO,LE
+]{\sffamily\thepage} % Custom footer text
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
