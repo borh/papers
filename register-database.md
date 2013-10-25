@@ -7,7 +7,8 @@ email: bor.hodoscek@gmail.com
 author-comment: This work was sponsored under JSPS Foreign Post-Doc Fellowship grant \#P13303.
 author-affiliation: National Institute for Japanese Language and Linguistics
 author2: Hilofumi Yamamoto
-author2-affiliation: Tokyo Institute of Technology/
+author2-affiliation: Tokyo Institute of Technology
+email2: yamagen@ryu.titech.ac.jp
 date: \today
 abstract: |
   This study proposes to evaluate the discriminatory power of the metadata contained within the Balanced Corpus of Contemporary Written Japanese (BCCWJ) for the modeling of linguistic variation (register).
@@ -33,7 +34,7 @@ abstract: |
 
 tags: [register, genre, style, ontology, OWL, RDF, Japanese, corpus, BCCWJ]
 publisher: To be presented at the 19th Symposium of the Association for Databases on the Humanities
-columns: 3
+columns: 2
 ---
 
 # Introduction
