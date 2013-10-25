@@ -153,7 +153,7 @@ LLC.
 
 $\Delta$
 
-- The most notable approach of this category has been proposed by Burrows (2002) under the name ‘Delta’. First, this method calculates the z- distributions of a set of function words (originally, the 150 most frequent words). Then, for each document, the deviation of each word frequency from the norm is calculated in terms of z-score, roughly indicating whether it is used more (positive z-score) or less (negative z-score) times than the average. Finally, the Delta measure indicating the difference between a set of (training) texts written by the same author and an unknown text is the mean of the absolute differences between the z-scores for the entire function word set in the training texts and the corresponding z-scores of the unknown text. The smaller Delta measure, the greater stylistic similarity between the unknown text and the candidate author. It has been demonstrated that it is a very effective attribution method for texts of at least 1,500 words. For shorter texts the accuracy drops according to length. However, even for quite short texts, the correct author was usually included in the first five positions of the ranked authors which provides a means for reducing the set of candidate authors. [@stamatatos2009survey]
+-   The most notable approach of this category has been proposed by Burrows (2002) under the name ‘Delta’. First, this method calculates the z- distributions of a set of function words (originally, the 150 most frequent words). Then, for each document, the deviation of each word frequency from the norm is calculated in terms of z-score, roughly indicating whether it is used more (positive z-score) or less (negative z-score) times than the average. Finally, the Delta measure indicating the difference between a set of (training) texts written by the same author and an unknown text is the mean of the absolute differences between the z-scores for the entire function word set in the training texts and the corresponding z-scores of the unknown text. The smaller Delta measure, the greater stylistic similarity between the unknown text and the candidate author. It has been demonstrated that it is a very effective attribution method for texts of at least 1,500 words. For shorter texts the accuracy drops according to length. However, even for quite short texts, the correct author was usually included in the first five positions of the ranked authors which provides a means for reducing the set of candidate authors. [@stamatatos2009survey]
 
 
 Kin.
@@ -167,6 +167,118 @@ Kin.
 ### Systemic Functional Linguistics
 
 [@Halliday2004]
+
+### Misc
+
+-   [@kilgarriff2001comparing]
+
+-   [@gries2009n]
+
+-   [@gries2008dispersions; @th2009dispersions; @lijffijt2008correction]
+
+
+
+$n = length(v)$
+
+$f = \sum{v}$
+
+$s = \frac{s}{\sum{s}}$
+
+$values = list()$
+
+$\text{observed overall frequency} = f$
+
+$\text{sizes of corpus parts / corpus expected proportion} = s$
+
+$\text{relative entropy of all sizes of the corpus parts} = - \frac{\sum{s \times \log s}}{\log length(s)}$
+
+$\text{range} = \sum{v>0}$
+
+$\text{maxmin} = max(v)-min(v)$
+
+$\text{standard deviation} = sd(v)$
+
+$\text{variation coefficient} = \frac{sd(v)}{mean(v)}$
+
+$\text{Chi-square} = \sum{\frac{v - (f \times \frac{s}{\sum{s}})^2}{f \times \frac{s}{\sum{s}}}}$
+
+$\text{Juilland et al.'s D (based on equally-sized corpus parts)} = 1-\frac{\frac{sd(v)}{mean(v)}}{\sqrt{n-1}}$
+
+$\text{Juilland et al.'s D (not requiring equally-sized corpus parts)} = 1-((sd(v/s)/mean(v/s))/\sqrt{length(v/s)-1})$
+
+$\text{Carroll's D2} = (\log_2 f - (\sum{v[v!=0] \times \log_2 v[v!=0]}/f))/\log_2 n$
+
+$\text{Rosengren's S (based on equally-sized corpus parts)} = ((\sum{\sqrt{v}}^2)/n)/f$
+
+$\text{Rosengren's S (not requiring equally-sized corpus parts)} = \sum{\sqrt{v \times s}}^2/f$
+
+$\text{Lyne's D3 (not requiring equally-sized corpus parts)} = 1-((\sum{((v-mean(v))^2)/mean(v)})/(4 \times f))$
+
+$\text{Distributional consistency DC} = ((\sum{\sqrt{v}}/n)^2)/mean(v)$
+
+$\text{Inverse document frequency IDF} = \log_2 n/\sum{v>0}$
+
+
+$\text{Engvall's measure} = f \times \frac{\sum{v>0}}{n}$
+
+$\text{Juilland et al.'s U (based on equally-sized corpus parts)} = f \times (1 - \frac{\frac{sd(v)}{mean(v)}}{\sqrt{n - 1}})$
+
+<!--
+$\text{Juilland et al.'s U (not requiring equally-sized corpus parts)} = f \times (1 - \frac{\frac{sd(\frac{v}{s})}{mean(\frac{v}{s})}{\sqrt{length(\frac{v}{s}) - 1}})$
+-->
+
+<!--
+$\text{Carroll's Um (based on equally sized corpus parts)} = f \times (\log_2 f - \frac{\sum{v[v!=0] \times \log_2 v[v!=0]}}{f})}{\log_2 n} + (1-\frac{\log_2 f - (\sum{v[v!=0] \times \log_2 v[v!=0]}/f)}{\log_2 n} \times (f/n))$
+-->
+
+$\text{Rosengren's Adjusted Frequency (based on equally sized corpus parts)} = \frac{\sum{\sqrt{v}}^2}{n}$
+
+$\text{Rosengren's Adjusted Frequency (not requiring equally sized corpus parts)} = \sum{\sqrt{v \times s}}^2$
+
+$\text{Kromer's Ur} = \sum{digamma(v+1)+0.577215665}$
+
+C=0.577215665
+
+$\text{Deviation of proportions DP} = \frac{\sum{abs(\frac{v}{f}-s)}}{2}$
+
+$\text{Deviation of proportions DP (normalized)} = \frac{\sum{\frac{abs(\frac{v}{f}-s)}{2}}}{1-min(s)}$
+
+corrected, see below
+
+
+ Thanks a lot to Jefrey Lijffijt (p.c., 3 July 2011)
+
+setting up data
+
+$expected = c(0.01, 0.01, 0.98)$
+
+$observed = c(1, 0, 0)$
+
+computing DP
+
+$DP = \sum{abs(expected-observed)}/2$
+
+computing DPmax
+
+$observed.for.DPmax = rep(0, length(expected))$
+
+$observed.for.DPmax[which.min(expected)] = 1$
+
+$DPmax = \frac{\sum{abs(expected-observed.for.DPmax)}}{2}$
+
+this is the complex way to say
+
+$DPmax = 1 - min(corpus.part.sizes)$
+
+computing DPnorm
+
+$DPnorm = \frac{DP}{DPmax}$
+
+-   [@gries2009bigrams]
+
+-   [@a2013arXiv1309.3323U]
+
+-   [@Forsyth06022013]
 
 # Materials
 
@@ -203,6 +315,8 @@ LEARNED          (LEARNED)         Natural Sciences
 
 
 In reality, a strict hierarchy is not able to capture (is a clumsy way of capturing) all the structure offered in many corpora.
+This is, for example, because the branching factor in the hierarchy is often a combination of topic, register, and genre differences, which obviously interact at different levels and, in essence, require hierarchies of their own.
+Eventually, the realization of an ontology of variation within and between texts would allow a systematic encoding of the metadata inherent in a document.
 Instead, the relationships between the texts in a corpus and the meta-information available can be readily modeled as an ontology (really?).
 
 ## BCCWJ
@@ -275,14 +389,15 @@ Media/metadata as ontology graph, using weighted links between different parts w
 Consider RDF linked data output in system. How should this be positioned relative to the JSON API? JSON-LD and triple- vs entity-centric data model. Efficient graph structure if doing home-grown (intermediate?) data store. How to efficiently model the metadata and words in the BCCWJ -- do we want to keep information on which sentence a word occurs in as an edge? DRAW!!!!!!
 Minimal discriminating difference network for final display.
 
-Media metainformation as ontology. Which parts/links are implied in the current metadata, and which can be extracted/inferred from the language data? Use https://github.com/phillord/tawny-owl to programmatically make an ontology on the fly. What kind of inferences can we do on this data with standard ontology (OWL) reasoners, and would core.logic or datalog help? Disjoint classes in OWL. collection `contains` articles. http://ontogenesis.knowledgeblog.org/1401
+Media metainformation as ontology. Which parts/links are implied in the current metadata, and which can be extracted/inferred from the language data? Use [https://github.com/phillord/tawny-owl] to programmatically make an ontology on the fly. What kind of inferences can we do on this data with standard ontology (OWL) reasoners, and would core.logic or datalog help? Disjoint classes in OWL. collection `contains` articles. [http://ontogenesis.knowledgeblog.org/1401]
 What kind of automatic inferences can we make on the data with for example simple linear regression (refer to graph/LR paper -- inductive and deductive reasoning).
 The purpose of the ontology is to make the calculation of metainformation tractable, and to discover where the metainformation structure is lacking by way of comparisons of language data.
 
 OWL species general logical constraints.
 OWL-DL seems the most reasonable implementation.
 
-Read [[http://shirky.com/writings/ontology_overrated.html]]:
+Read [http://shirky.com/writings/ontology_overrated.html]:
+
 -   "What's being optimized is number of books on the shelf. That's what the categorization scheme is categorizing." -- referring to the DDS.
 -   hierarchy vs. link structure---a true dichotomy?
 -    You can also turn that list around. You can say "Here are some characteristics where ontological classification doesn't work well":
@@ -360,15 +475,20 @@ Semantic similarity vector spaces. What is the connection between the distance b
 
 What is the link between the sparse-dense scale and the diffuse-concentrated scale, as well as the functional-content scale (of TF-IDF)? When splitting words into low-middle-high classes, compare word classifications between different contexts to see if they move. Compare two concepts at once. $\alpha(A,B) = P(A|B) \cdot P(B|A)$ -> $P(A|B)$ (actually read [http://en.wikipedia.org/wiki/Mutual_information]) is the ratio of words in a span of $A$ that moved to the same span in $B$, while $P(B|A)$ is the ratio of words in a span of $B$ that moved to the same span in $A$ (==Mutual Information). Is this a novel/good way of measuring context similarity? We can even use sentences as the unit of IDF, where each document would then have a unique TF-IDF distribution, and we could repeat the same process as above. In effect, we would then get a contextual distribution over each word.
 
+Compare with [@rybicki2011deeper]:
+
+- "Each analysis was made for the top 50-5000 most frequent words in the corpus - but then the 50 most frequent words would be omitted and the next 50-5000 words taken for analysis; then the first 100 most frequent words would be omitted, and so on. This was done with a single R script written by Eder; the script produced word frequency tables, calculated Delta and produced "heatmap" graphs of Delta's success rate for each of the frequency list intervals, showing the best combinations of initial word position in wordlist and size of window, including variations of pronoun deletion and culling parameters. Thus, in the resulting heatmap graphs, the horizontal axis presents the size of each wordlist used for one set of Delta calculations; the vertical axis shows how many of the most frequent words were omitted. Each of the runs of the script produced an average of ca. 3000 Delta iterations." [p. 1]
+-   upon reflection, while the heatmap viz does not fit this paper, we could smartly order each sample into a rank (highlighting where indexes begin) to make a corellelogram (doh!)
+
 <!-- FIXME -->
 
 \begin{equation}
-    \text{tf-idf}
-    \begin{dcases*}
-        \ge +\sigma & high\\
-        < +\sigma \land > -\sigma & mid\\
-        \le -\sigma & low
-    \end{dcases*}
+    \text{tf-idf}(w_i)
+    \begin{dcases}
+        \ge \text{tf-idf}_{+\sigma}                                 & \rightarrow \text{high}\\
+          > \text{tf-idf}_{-\sigma} \land < \text{tf-idf}_{+\sigma} & \rightarrow \text{mid}\\
+        \le \text{tf-idf}_{-\sigma}                                 & \rightarrow \text{low}
+    \end{dcases}
 \end{equation}
 
 \vspace*{1em}
