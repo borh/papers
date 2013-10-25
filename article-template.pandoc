@@ -94,11 +94,17 @@
 \title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\sffamily\textbf{$title$} $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$} % Article title
 
 \author{
-\large
-\textsc{$author$}\thanks{$author-comment$}\\[2mm] % Your name
-\normalsize\sffamily $author-affiliation$ \\ % Your institution
-\normalsize\sffamily \href{mailto:$email$}{$email$} % Your email address
-\vspace{-5mm}
+  \large
+  \textsc{$author$}\thanks{$author-comment$}\\[2mm] % Your name
+  \normalsize\sffamily $author-affiliation$ \\ % Your institution
+  \normalsize\sffamily \href{mailto:$email$}{$email$} % Your email address
+  $if(author2)$
+  \and
+  \large
+  \textsc{$author2$}\\[2mm]
+  \normalsize\sffamily $author2-affiliation$\\
+  \normalsize\sffamily \href{mailto:$email2$}{$email2$}
+  $endif$
 }
 \date{}
 
