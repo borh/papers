@@ -81,6 +81,63 @@ Tentative interpretations of register, genre, style, text type, and domain [Also
     [@eckert2001styleIrvine]
 
 
+Table: Defining characteristics of register, genre, style, text type, domain, and dialect.
+
+**Characteristic/Term**   **Register**   **Genre**      **Style**       **Text type**   **Domain**      **Dialect**
+------------------------ -------------- -------------- --------------- --------------- --------------- --------------- --------------- ---------------
+Inter-speaker                                                                                          ✓
+Intra-speaker            ✓
+Language-internal
+Language-external
+Situational factors:
+Social rank
+Document                                ✓
+Sample                   ✓                             ✓
+Sentence
+Phonology
+Lexicogrammar
+Discourse
+Topic                                                                                  ✓
+
+
+Situational factors: [@Biber2009, p. 40 (Table 2.1)]
+
+I.  Participants
+    -   Addressor(s)
+        1.  single/plural/institutional/unidentified
+        2.  social characteristics: age, education, profession, etc.
+    -   Addressee(s)
+        1.  single/plural/un-enumerated
+        2.  self/other
+    -   Are there on-lookers?
+II. Relations among participants
+    -   Interactiveness
+    -   Social roles: relative status or power
+    -   Personal relationship: e.g., friends, colleagues, strangers
+    -   Shared knowledge: personal and specialist
+III. Channel
+    -   Mode: speech/writing/signing
+    -   Specific medium:
+        -   Permanent: taped / transcribed / printed / handwritten / e-mail / etc.
+        -   Transient: face-to-face / telephone / radio / TV / etc.
+IV. Production circumstances: real time / planned / scripted / revised and edited
+V.  Setting
+    -   Is the time and place of communication shared by participants?
+    -   Place of communication?
+        -   Private / public
+        -   Specific setting
+    -   Time: contemporary, historical time period
+VI. Communicative purposes
+    -   General purposes: narrate / report, describe, exposit / inform / explain, persuade, how-to / procedural, entertain, edify, reveal self
+    -   Specific purposes: e.g., summarize information from numerous sources,, describe methods, present new research findings, teach moral through personal story
+    -   Factuality: factual, opinion, speculative, imaginative
+    -   Expression of stance: epistemic, attitudinal, no overt stance
+VII. Topic
+    -   General topical "domain": e.g., domestic, daily activities, business / religion, sports, art / entertainment, etc.
+    -   Specific topic
+    -   Social status of person being reffered to
+
+
 What are the main differences between register and genre?
 Level.
 
