@@ -176,7 +176,7 @@ Kin.
 
 -   [@gries2008dispersions; @th2009dispersions; @lijffijt2008correction]
 
-
+Weighting functions:
 
 $n = length(v)$
 
@@ -200,23 +200,23 @@ $\text{standard deviation} = sd(v)$
 
 $\text{variation coefficient} = \frac{sd(v)}{mean(v)}$
 
-$\text{Chi-square} = \sum{\frac{v - (f \times \frac{s}{\sum{s}})^2}{f \times \frac{s}{\sum{s}}}}$
+$\text{Chi-square} = \sum{\frac{(v - \frac{f \times s}{\sum{s}})^2}{\frac{f \times s}{\sum{s}}}}$
 
 $\text{Juilland et al.'s D (based on equally-sized corpus parts)} = 1-\frac{\frac{sd(v)}{mean(v)}}{\sqrt{n-1}}$
 
-$\text{Juilland et al.'s D (not requiring equally-sized corpus parts)} = 1-((sd(v/s)/mean(v/s))/\sqrt{length(v/s)-1})$
+$\text{Juilland et al.'s D (not requiring equally-sized corpus parts)} = 1-\frac{\frac{\frac{sd(\frac{v}{s})}{mean(\frac{v}{s})}}}{\sqrt{length(\frac{v}{s})-1}}$
 
-$\text{Carroll's D2} = (\log_2 f - (\sum{v[v!=0] \times \log_2 v[v!=0]}/f))/\log_2 n$
+$\text{Carroll's D2} = \frac{\log_2 f - \frac{\sum{v[v!=0] \times \log_2 v[v!=0]}{f}}}{\log_2 n}$
 
-$\text{Rosengren's S (based on equally-sized corpus parts)} = ((\sum{\sqrt{v}}^2)/n)/f$
+$\text{Rosengren's S (based on equally-sized corpus parts)} = \frac{\frac{(\sum{\sqrt{v}})^2}{n}}{f}$
 
 $\text{Rosengren's S (not requiring equally-sized corpus parts)} = \sum{\sqrt{v \times s}}^2/f$
 
-$\text{Lyne's D3 (not requiring equally-sized corpus parts)} = 1-((\sum{((v-mean(v))^2)/mean(v)})/(4 \times f))$
+$\text{Lyne's D3 (not requiring equally-sized corpus parts)} = 1-\frac{\sum{\frac{(v-mean(v))^2}{mean(v)}}}{4 \times f}$
 
-$\text{Distributional consistency DC} = ((\sum{\sqrt{v}}/n)^2)/mean(v)$
+$\text{Distributional consistency DC} = \frac{(\sum{\sqrt{v}}/n)^2}{mean(v)}$
 
-$\text{Inverse document frequency IDF} = \log_2 n/\sum{v>0}$
+$\text{Inverse document frequency IDF} = \frac{\log_2 n}{\sum{v>0}}$
 
 
 $\text{Engvall's measure} = f \times \frac{\sum{v>0}}{n}$
@@ -279,6 +279,25 @@ $DPnorm = \frac{DP}{DPmax}$
 -   [@a2013arXiv1309.3323U]
 
 -   [@Forsyth06022013]
+
+Distance functions:
+
+-   fr: raw frequencies of each elastigram in the feature-list.
+-   bi: binarized frequencies, i.e. one if the elastigram concerned is present, otherwise zero.
+-   ra: percentage occurrence rates of each elastigram, i.e. relative frequencies.
+-   rf: square roots of raw frequencies.
+-   ri: riditized frequencies (Bross, 1958).
+-   rr: reciprocal of rank position of each elastigram by relative frequency.....  where fj is frequency of elastigram j.
+-   wt: tf-idf weights (Weiss et al., 2005).
+-   canb: Canberra metric d (with zero result when denominator equals zero).
+-   city: city-block distance (Minkowski L1-metric).
+-   czed: Czekanowksi coefficient (Everitt, 1998)
+-   eudi: Euclidean distance.
+-   icor: inverse product-moment correlation coefficient (1-r).
+-   icos: inverse cosine similarity (1-cos).
+-   irho: inverse of Spearman’s rank correlation coefficient (1-rho).
+-   itet: inverse tetrachoric correlation coefficient (1-tc) estimated according to Karl Pearson’s formula ([Upton and Cook, 2008](http://www.amazon.co.jp/Dictionary-Statistics-Oxford-Paperback-Reference/dp/0199541450))
+-   kuld: Kullback–Leibler directed divergence (Kapur and Kesavan, 1992)
 
 # Materials
 
