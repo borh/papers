@@ -532,28 +532,58 @@ Compare with [@rybicki2011deeper]:
 
 \vspace*{1em}
 \begin{algorithm}[H]
+   \label{alg:resampling}
+   \caption{Resampling of documents.}
+   \SetAlgoLined
+   \RestyleAlgo{algoruled}
+   \DontPrintSemicolon
+
+   $N \leftarrow$ number of documents in contextual slice $C$\;
+   \For{each document $D$ in contextual slice $C$}{
+     Some smart way of resampling the documents to adjust their number and make them of comparable lengths.\;
+   }
+
+   \vspace*{1em}
+\end{algorithm}
+\vspace*{1em}
+
+$\delta(c, \bar{c}) = ...$
+
+\vspace*{1em}
+\begin{algorithm}[H]
    \label{alg:comparison}
-   \caption{Comparing overlap between context and tf-idf category.}
+   \caption{Calculate distance metrics between all contrasting context slices/spaces.}
    \SetAlgoLined
    \RestyleAlgo{algoruled}
    \DontPrintSemicolon
   Define sets of context slices to compare \nllabel{A:grid}\;
   \For{each context slice $c \in C$}{
-    Compute the $tf-idf(t, df_c)$ for $\every t \in T$ \;
-    \For{each resampling iteration}{
-      Hold—out specific samples \nllabel{A:resample} \;
+    Compute the $\text{tf-idf}(t, \text{df}_c)$ for $\forall t \in T$ \;
+    \For{each metric $M$}{
+      Initialize empty matrix $\Delta_M$ using metric $M$ \;
+      $\Delta_M \leftarrow$
+      \For{each context slice $\bar{c} \ne c \land \bar{c} \in C$}{
+        $\delta(c, \bar{c})$ \;
 
-%      [Optional] Pre—process the data\;
-      Fit the model on the remainder\;
 
-      Predict the hold—out samples\;
+        %Hold—out specific samples \nllabel{A:resample} \;
+
+        %[Optional] Pre—process the data\;
+      }
     }
-    Calculate the average performance across hold—out predictions \nllabel{A:perf}
   }
-  Determine the optimal parameter set \nllabel{A:best}\;
+  \vspace*{1em}
+\end{algorithm}
+\vspace*{1em}
 
-  Fit the final model to all the training data using the optimal
-  parameter set\;
+\vspace*{1em}
+\begin{algorithm}[H]
+   \label{alg:tf-idf-comparison}
+   \caption{Comparing overlap between context and tf-idf category.}
+   \SetAlgoLined
+   \RestyleAlgo{algoruled}
+   \DontPrintSemicolon
+
   \vspace*{1em}
 \end{algorithm}
 \vspace*{1em}
