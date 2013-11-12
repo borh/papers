@@ -15,7 +15,6 @@ abstract: |
   We structure the metadata, which contains different types of facts (genre label, author, year, etc.), into a graph, and measure the linguistic similarities between different subsets of the corpus set along disjoint parts of the metadata graph structure.
   The resulting similarity scores will reveal the relationships between--as well as the constraints and gaps within--the metadata, which can inform the construction of an ontology of corpus metadata usable for register studies.
 
-
   Construction of an ontology of genres from media labels in the Balanced Corpus of Contemporary Written Japanese.
   By making the calculation of media labels tractable, we take a first step towards an empirically motivated evaluation of the validity of the labels in representing genre and register differences.
   Construction of a database for profiling the register of a word or collocation.
@@ -305,6 +304,29 @@ Distance functions:
 
 ### Language-External Criteria
 
+There are many types of metadata: (From [Wikipedia](http://en.wikipedia.org/wiki/Metadata))
+
+-   **Guide metadata** are used to help humans find specific items and are usually expressed as a set of keywords in a natural language. The NDC corresponds to this type of metadata.
+-   Metadata schema can be hierarchical in nature where relationships exist between metadata elements and elements are nested so that parent-child relationships exist between the elements. An example of a hierarchical metadata schema is the IEEE LOM schema where metadata elements may belong to a parent metadata element. Metadata schema can also be one-dimensional, or linear, where each element is completely discrete from other elements and classified according to one dimension only. An example of a linear metadata schema is Dublin Core schema which is one dimensional. Metadata schema are often two dimensional, or planar, where each element is completely discrete from other elements but classified according to two orthogonal dimensions.
+-   **Granularity**: The degree to which the data or metadata are structured is referred to as their granularity. Metadata with a high granularity allow for deeper structured information and enable greater levels of technical manipulation however, a lower level of granularity means that metadata can be created for considerably lower costs but will not provide as detailed information. The major impact of granularity is not only on creation and capture, but moreover on maintenance. As soon as the metadata structures get outdated, the access to the referred data will get outdated. Hence granularity shall take into account the effort to create as well as the effort to maintain.
+-   The Simple Dublin Core Metadata Element Set (DCMES) consists of 15 metadata elements:
+    -   Title
+    -   Creator
+    -   Subject
+    -   Description
+    -   Publisher
+    -   Contributor
+    -   Date
+    -   Type
+    -   Format
+    -   Identifier
+    -   Source
+    -   Language
+    -   Relation
+    -   Coverage
+    -   Rights
+-   [Functional Requirements for Bibliographic Records](http://www.ifla.org/publications/functional-requirements-for-bibliographic-records) might be worth a look.
+
 
 Before examining linguistic features that measure register, I ...
 
@@ -374,6 +396,10 @@ Books               NDC....                   Yes              Not really
 Yahoo! Blogs        Topic categories (tags)   Yes              No
 ...
 
+
+-   Some comments on the reliability of some parts of the BCCWJ:
+    -   田野村忠温（2012）「BCCWJに収められた新種の言語資料の特性について—データ重複の諸相とコーパス使用上の注意点」『待兼山論叢』46
+    -   BCCWJの資料的特性──コーパス理解の重要性──」（『講座日本語コーパス6　コーパスと日本語学』、朝倉書店、未刊）
 
 @wu2010fine:
 
@@ -456,10 +482,9 @@ Read [http://shirky.com/writings/ontology_overrated.html]:
     The solution to this sort of signal loss is growth. Well-managed, well-groomed organizational schemes get worse with scale, both because the costs of supporting such schemes at large volumes are prohibitive, and, as I noted earlier, scaling over time is also a serious problem. Tagging, by contrast, gets better with scale. With a multiplicity of points of view the question isn't "Is everyone tagging any given link 'correctly'", but rather "Is anyone tagging it the way I do?" As long as at least one other person tags something they way you would, you'll find it -- using a thesaurus to force everyone's tags into tighter synchrony would actually worsen the noise you'll get with your signal. If there is no shelf, then even imagining that there is one right way to organize things is an error.
 -   "There isn't in fact a binary condition of a tag that can or cannot survive any kind of long-term examination. " cf. the genre as formal ontology paper
 
-http://www.w3.org/Submission/SWRL/
-http://owlapi.sourceforge.net/
-http://blog.neo4j.org/2013/08/and-now-for-something-completely.html
-
+-   http://www.w3.org/Submission/SWRL/
+-   http://owlapi.sourceforge.net/
+-   http://blog.neo4j.org/2013/08/and-now-for-something-completely.html
 -   [@garbacz2006outline]
     -   [@orlikowski1994genre]
     -   [@yates1992genres]
@@ -533,7 +558,7 @@ Compare with [@rybicki2011deeper]:
 \vspace*{1em}
 \begin{algorithm}[H]
    \label{alg:resampling}
-   \caption{Resampling of documents.}
+   \caption{Bootstrap resampling (or exhaustive permutation) of documents.}
    \SetAlgoLined
    \RestyleAlgo{algoruled}
    \DontPrintSemicolon
@@ -541,7 +566,7 @@ Compare with [@rybicki2011deeper]:
    $N \leftarrow$ number of documents in contextual slice $C$\;
    \For{each document $D$ in contextual slice $C$}{
      Some smart way of resampling the documents to adjust their number and make them of comparable lengths.\;
-   }
+  }
 
    \vspace*{1em}
 \end{algorithm}
@@ -552,7 +577,7 @@ $\delta(c, \bar{c}) = ...$
 \vspace*{1em}
 \begin{algorithm}[H]
    \label{alg:comparison}
-   \caption{Calculate distance metrics between all contrasting context slices/spaces.}
+   \caption{Calculate distance metrics between all contrasting context slices/spaces. Should this be between or within levels (complicated if we include sentence-level tags)?}
    \SetAlgoLined
    \RestyleAlgo{algoruled}
    \DontPrintSemicolon
@@ -564,7 +589,6 @@ $\delta(c, \bar{c}) = ...$
       $\Delta_M \leftarrow$
       \For{each context slice $\bar{c} \ne c \land \bar{c} \in C$}{
         $\delta(c, \bar{c})$ \;
-
 
         %Hold—out specific samples \nllabel{A:resample} \;
 
@@ -584,9 +608,16 @@ $\delta(c, \bar{c}) = ...$
    \RestyleAlgo{algoruled}
    \DontPrintSemicolon
 
+   $A \cap B$ \;
+   $A \setminus B$ \;
+   $B \setminus A$ \;
+
   \vspace*{1em}
 \end{algorithm}
 \vspace*{1em}
+
+![Comparing the distribution of tf-idf categories between context slices.](images/register-database-tf-idf-comparison.pdf)
+
 
 Is it possible to compare between TF-IDF weights in a diachronic analysis? Or even a synchronic/variational one? If the context space corresponds to the N, should we split the IDF portion per (coarse) context or take the big N of the total (estimated/known) language space? Specify the relationship between context, N, and query. If N is infinite than every word has the same weight(?), so do not take a big N as an ideal number. A context-sensitive IDF is more important.
 
