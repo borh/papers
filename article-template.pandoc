@@ -37,6 +37,12 @@
   BoldItalicFont={RobotoCondensed_BoldItalic},
   SmallCapsFont={RobotoCondensed_Regular}
 ]{RobotoCondensed_Regular}
+\setmonofont[
+  BoldFont={SourceCodePro_Bold},
+  ItalicFont={SourceCodePro_It},
+  BoldItalicFont={SourceCodePro_BoldIt},
+  SmallCapsFont={SourceCodePro_Regular}
+]{SourceCodePro_Regular}
 \usepackage{luatexja}
 %\usepackage{luatexja-fontspec}
 \usepackage{lualatex-math}
@@ -61,6 +67,19 @@
 \usepackage{booktabs} % Horizontal rules in tables
 \renewcommand{\arraystretch}{.8}
 \usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+%\renewcommand{\includegraphics}[1]{\Oldincludegraphics[height=.5\textheight]{#1}}
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[height=.4\textheight]{#1}}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
 \usepackage{hyperref} % For hyperlinks in the PDF
 
 \usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
@@ -86,6 +105,13 @@
 \fancyhead[C]{\sffamily $if(shorttitle)$ $shorttitle$ $else$ $title$ $endif$\(\cdot\) $date$ \( \cdot \) $if(publisher)$ $publisher$ $if(volume)$, Vol. $volume$ $endif$ $if(number)$, No. $number$ $endif$ $endif$} % Custom header text
 \fancyfoot[C %RO,LE
 ]{\sffamily\thepage} % Custom footer text
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
