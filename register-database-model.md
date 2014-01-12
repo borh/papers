@@ -10,8 +10,10 @@ date: \today
 abstract: |
   This study proposes to evaluate the discriminatory power of the metadata contained within the Balanced Corpus of Contemporary Written Japanese (BCCWJ) for the modeling of linguistic variation (register).
   The available metadata is analyzed into several categories thought to influence register (NDC category hierarchy, gender, topic, media, etc.), which are then used to partition the documents within the corpus along different category groupings.
-  The resulting similarity scores between the linguistic features of the
-  category groupings reveal the relationships between--as well as the constraints and gaps within--the metadata, which is essential information for the reliable measurement of differences in register.
+  The resulting similarity scores between the linguistic features of the category groupings reveal the relationships between--as well as the constraints and gaps within--the metadata, which is essential information for the reliable measurement of differences in register.
+
+  本研究では、現代日本語の書き言葉の言語の変異（レジスター）をモデル化する上での有効なコーパスのメタデータとは何かを追求するものである。本研究で扱うメタデータというのは、文章のレベルに付与されている書誌情報、メディア、ジャンルなどと、語りかけ性などのアノテーション情報のほかに、パラグラフと文のレベルに付与されているアノテーション（タイトル文、注釈文、会話文など）である。レジスターのモデル化に有効な言語外・言語内的な情報として「現代日本語書き言葉均衡コーパス」に含まれる上記のあらゆるメタデータからコーパスのサブセットを生成し、それらサブセット中にみられる異常な言語特徴をもつものを発見する手法を提案する。この手法により、メタデータと言語特徴の関係を明らかにすることができる上に、レジスターを表現するためにどのようなメタデータが有効なのかを明らかにすることが可能になる。
+
 tags: [BCCWJ, register, subgroup discovery, exceptional model mining, tf-idf]
 publisher: To be presented at ...
 columns: 2
