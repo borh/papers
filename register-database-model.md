@@ -176,6 +176,8 @@ Eventually, the realization of an ontology of variation within and between texts
 As far as the authors know, such an ontology does not yet exist.
 Therefore, for the purposes of this study, we will seek to find which parts of the metadata influence linguistic variation.
 
+In addition, readability [@Sato2008; @Tanaka2010] is an influential factor in/measure of ...
+
 ## Hierarchical Classification
 
 [@babbar2013maximum]
@@ -302,7 +304,17 @@ First we define the language model that will be used to measure differences betw
 
 The language contained in documents and subgroups is simply represented using a vector of word weights, calculated using a variant of the well-known tf-idf (term frequency-inverse document frequency) formulation first proposed by [@spark1972statistical]:
 
-$$\text{tf-idf}(t, d) = (1 + \text{log}_2 \text{tf}(t, d)) * (\text{log}_2 \sfrac{N}{\text{df}(t, d)}),$$
+$$\text{tf}(t, D) = \sum_{i=1}^{N} \text{number of occurrences of } t \text{ in } d_i$$
+
+$$\text{df}(t, D) = \text{number of documents where } t \text{ occurs in}$$
+
+$$\text{wf}(t, D) = 1 + \text{log}_2 \text{tf}(t, D)$$
+
+$$\text{idf}(t, D) = \text{log}_2 \frac{N}{\text{df}(t, D)}$$
+
+$$\text{wf.idf}(t, D) = \text{wf}(t, D) \cdot \text{idf}(t, D)$$
+
+$$\text{wf.idf}(t, D) = (1 + \text{log}_2 \text{tf}(t, D)) \cdot \text{log}_2 \frac{N}{\text{df}(t, D)},$$
 
 where $t$ and $d$ correspond to a term and a document, respectively.
 $N$ is the total number of documents in the collection, which is 172,675 in the case of the BCCWJ.
