@@ -4,11 +4,11 @@ subtitle:
 shorttitle: Metadata in the BCCWJ
 author: Bor Hodošček
 email: bor.hodoscek@gmail.com
-author-comment: This research was financially supported by JSPS Foreign Post-Doc Fellowship grant (\#P13303).
 author-affiliation: National Institute for Japanese Language and Linguistics
+author-comment: A previous version of this paper was presented at the ......
 date: \today
 abstract: |
-  This study proposes to evaluate the discriminatory power of the metadata contained within the Balanced Corpus of Contemporary Written Japanese (BCCWJ) for the modeling of linguistic variation (register).
+  This study proposes to evaluate the discriminatory power of the metadata contained within the Balanced Corpus of Contemporary Written Japanese (BCCWJ) for the modeling of linguistic variation, or _register_.
   The available metadata is analyzed into several categories thought to influence register (NDC category hierarchy, gender, topic, media, etc.), which are then used to partition the documents within the corpus along different category groupings.
   The resulting similarity scores between the linguistic features of the category groupings reveal the relationships between--as well as the constraints and gaps within--the metadata, which is essential information for the reliable measurement of differences in register.
 
@@ -16,17 +16,38 @@ abstract: |
 
 tags: [BCCWJ, register, subgroup discovery, exceptional model mining, tf-idf]
 publisher: To be presented at ...
-columns: 2
 ---
 
 # Introduction
 
-This study proposes to combine extra-linguistic and inter-linguistic features in the modeling of linguistic variation (register) in Japanese.
-The quantitative study of register in Japanese has recently become more accessible with the availability of the Balanced Corpus of Contemporary Written Japanese (BCCWJ), a 120 million token corpus that contains a wide variety of written Japanese [@Maekawa2007].
+>   Frame the research in terms of situational variation, while also mentioning sociolinguistic variation as related. When speakers make choices when they speak, they tap into their linguistic experience, which is formed from their exposure and interaction within different situations. In our present dataset, some of these  situational characteristics are known, such as media etc., but most are not. And of the few we do know about, exactly how they influence a particular linguistic choice has not yet been made clear.
+
+>   Outlier detection -> local pattern mining ->
+
+>   Labov's "principle of accountability" (p. 192 of  sociolinguistics book, Labov 1972g, p. 72.) is still relevant in the age of corpora -- but is it tractable yet? "According to the principle of accountability, the data must be circumscribed to only those contexts that are functionally comparable as well as variable."
+>   Comparison of marginals analysis? Variable means to have a range of context/usages that is not extreme (>95%).
+
+>   Do we believe in register prototypes or rather in degrees of context variability per register?
+>   Essential/basic questions we must understand/concepts we must define when discussing register and related terms:
+
+This is all done with the intention of elucidating the following questions:
+
+1.  What subset of metadata forms a concrete language variety (or situational variety)? -> FW
+2.  Is there a point where "concretness" happens, or is it a matter of gradual increment? -> FW
+3.  Are all metadata equal in their impact on language, and if they are not, which are more influential -- and does this change depending on the configuration of other metadata or even other third-party factors (how do we measure these)?
+4.  What are the relationships between metadata?
+5.  What is the relationship between subgroup discovery and clustering? Subgroup discovery and CART/etc...?
+
+
+While inter-linguistic features are in many cases extractable using NLP tools, extra-linguistic features are (sometimes) harder to come by and we have to rely on manual annotations.
+
+This study proposes to combine extra-linguistic and inter-linguistic features in the "modeling" of linguistic variation (register) in Japanese.
+A more comprehensive account of register variation in Japanese has recently become possible with the public availability of the Balanced Corpus of Contemporary Written Japanese (BCCWJ), a 100 million token corpus that contains a wide variety of written Japanese [@Maekawa2007].
 
 First, this study will provide background on register studies and the connection between them and corpus metadata.
-Next, the metadata available in the BCCWJ is analyzed into several categories thought to influence register, taking into account any hierarchical properties within the metadata.
-Finally, a pilot experiment using techniques from subgroup discovery [@wrobel1997algorithm; @langohr2013contrasting] and exceptional model mining [@duivesteijn2013exceptional] is conducted on the BCCWJ, showing some possibilities for further explorations of register variation in the BCCWJ.
+Next, the metadata available in the BCCWJ are analyzed into several categories thought to influence register, taking into account any hierarchical properties within the metadata.
+Finally, two pilot experiments using techniques from subgroup discovery [@wrobel1997algorithm; @langohr2013contrasting] and exceptional model mining [@duivesteijn2013exceptional] are conducted on the BCCWJ, showing some possibilities for further explorations of register variation in the BCCWJ.
+The first experiment is conducted on the whole corpus, while the second on only a subset containing more comprehensive metadata.
 
 <!--
 We want to uncover words with extreme or interesting distributional tendencies. Intra- and inter-media differences are critical for modeling the topic and register dependence of words. Each of these dependencies could be modeled on a scale. How do these dependencies grow/evolve with the increase of data vis-a-vis the expansion (or non-expansion) of context?
@@ -40,6 +61,8 @@ The properties we are interested in are the distributional properties of words (
 ## Language Variation
 
 Numerous studies on the topic of linguistic variation have been conducted using the different terminologies of style, genre, register, text type, and domain, to describe the variation observable in language [@eckert2001style; @Biber1995; @eckert2001styleIrvine; @Lee2001].
+A possible account of the differences between the terms is offered below.
+However, for the purposes of the present work, we will mostly be concerned with register in the broader sense, covering the situation of use, community, individual unique usage of language -- but only tied in with actual linguistic features.
 In the present work, we offer the following tentative interpretations of register, genre, style, text type, and domain [Also see @Lee2001]:
 
 -   Register:
@@ -62,7 +85,8 @@ In the present work, we offer the following tentative interpretations of registe
 The differing terminology betrays a duality of description when talking about language varieties: on the one hand there exists the language-centric (text or speech) bottom-up approach, and on the other the top-down metadata approach is prominent.
 -->
 
-Different approaches to modeling language variation have been developed, mirroring the needs and interests of at least the following fields: socio-linguistics, historical linguistics, dialect research, NLP, text classification, and authorship identification.
+Different approaches to modeling language variation have been developed, mirroring the needs and interests of many fields, including: socio-linguistics, historical linguistics, dialect research, NLP, text classification, and authorship identification.
+It is beyond the scope of this paper to offer a comprehensive account of them, but XYZ.
 
 <!--
 Our purpose here is to define register with respect to corpus, topic, metadata, and situational types.
@@ -73,7 +97,7 @@ The BCCWJ is the most comprehensive resource for investigating register variatio
 -->
 
 <!--
--   Stanford lab: [pp. 24]
+-   Stanford lab: [p. 24]
     -   __Involuntary signs__: this is certainly what MFW and LATs are. But are they just that? Because, clearly, there is a problem with earlobes and fingernails: good as they might be at identifying the author of a painting, they are worthless at explaining its meaning. In fact, they are good at the one because they are bad at the other: it’s only because “trifles” have no structural function, that authors let go and “write unintentionally, without realizing it” – thereby betraying themselves. If those words were important, they would be more careful.
 
         There is something paradoxical in these __traits that classify so well, and explain so little__.  Especially so in our case: because, after all, MFW and LATs were in at least one respect the very opposite of earlobes and fingernails: instead of being rare and peripheral details, they were so __frequent as to be almost ubiquitous__. And how could such __pervasive traits__ tell us nothing about the structure of genre? It was possible, of course, that it was all our fault; that, although we had managed to isolate the data, and were probably the first to “see” them, we just didn’t know how to make sense of them. Possible; and we are ready to place our data at the disposal of others, who may obtain better results.
@@ -103,15 +127,20 @@ The BCCWJ is the most comprehensive resource for investigating register variatio
 
 In the context of a corpus, we define metadata to be any data that describes some language-external fact about some part of a corpus.
 Thus, this definition encompasses not only the common case of data describing some fact at the document level, but also includes data at the level of document groups, as well as data at the lower token, sentence, and paragraph levels.
-In addition to the linguistic level, corpus metadata can be further analyzed based on who is annotating them into formal and informal approaches.
+In addition to the linguistic level, corpus metadata can be further analyzed based on the annotation approach into formal and informal approaches.
 
-Library classification systems such as the Dewey Decimal Classification (DDC) or the Japanese counterpart, the Nippon Decimal Classification (NDC), are classification systems which rely on expert catalogers and are arguably optimized for the efficient classification and storage of material in libraries.
+<!-- FIXME Figure -->
+
+![Corpus metadata model](images/corpus-data-model-2014-03.pdf)
+
+Library classification systems such as the Dewey Decimal Classification (DDC) or the Japanese counterpart, the Nippon Decimal Classification (NDC), are classification systems which rely on expert catalogers (CITE) and are arguably (CITE) optimized for the efficient classification and storage of material in libraries.
 This guided approach to classification espouses a singular point of view and is thus susceptible to any oversights or gaps in knowledge of the catalogers. <!-- : e.g. a book can only be physically located in one location. -->
-The organization of knowledge into ontologies is in many ways the most formal approach in this metadata category, and there are many cases where such a formal specification has been useful [@hirst2009ontology].
+The organization of knowledge into ontologies is in many ways the most formal approach in this metadata category, and there are many cases where such a formal specification has been useful [@hirst2009ontology provides several].
 
-In contrast, the other approach to metadata is more informal and often involves collaborative classification of content using sets of tags in what is sometimes called a folksonomy [@vander2007folksonomy].
-This approach eschews the singular viewpoint of an ontology for the plurality of multiple viewpoints.
-It is this property of the informal approach which arguably makes it more flexible in describing a wider variety of metadata, given that the vocabulary of tags is unrestricted enough and the amount of taggers is sufficient to overcome incongruities in the tag data [@Halpin:2007:CDC:1242572.1242602].
+In contrast, the other approach to metadata is more informal, and, in many cases (CITE), involves collaborative classification of content using sets of tags in what is sometimes called a folksonomy [@vander2007folksonomy].
+This approach eschews the singular viewpoint (i.e., that of the compiler) of an ontology for the plurality of multiple viewpoints (i.e., that of many users).
+It is this property of the informal approach which arguably makes it more flexible in describing a wider variety of metadata, given that the vocabulary of tags is unrestricted enough and that the number of taggers is sufficient to overcome incongruities in the tag data [@Halpin:2007:CDC:1242572.1242602].
+Thus, there are two kinds of metadata that mainly differ in XYZ.
 
 Finally, metadata can also be analyzed according to their granularity or dimensionality.
 The granularity of metadata refers to the complexity of structure contained in the metadata.
@@ -120,7 +149,6 @@ An example of higher-dimensionality metadata is a hierarchy such as the NDC, whe
 
 \begin{figure*}
 \label{fig:NDC}
-\caption{A part of the hierarchical structure of the NDC.}
 \begin{tikzpicture}
 \small
 \tikzset{every tree node/.style={align=center,anchor=north}}
@@ -131,9 +159,10 @@ An example of higher-dimensionality metadata is a hierarchy such as the NDC, whe
         [.… ]
     ]
 \end{tikzpicture}
+\caption{A part of the hierarchical structure of the NDC.}
 \end{figure*}
 
-As the annotation of corpus metadata depends on the research aims of the corpus, we limit the discussion to those corpus metadata which are more directly involved in the identification of language variety of one kind or another.
+As the annotation of corpus metadata depends on the research aims of the corpus and can thus encompass a diverse set of attributes, we limit the discussion to those corpus metadata which are more directly involved in the identification of language variety of one kind or another.
 A representative example of corpus metadata that has been used for such purposes is that contained within the British National Corpus Baby (BNC Baby).
 
 \label{sec:BNCBaby}
@@ -142,7 +171,6 @@ For example, the text categories in the BNC Baby^[More information on the BNC Ba
 
 \begin{figure*}
 \label{fig:BNCBaby}
-\caption{A part of the hierarchical structure of the register-focused metadata within the British National Corpus Baby (as described in \cite{gries2009bigrams}, pp. 3--4).}
 \centering
 \begin{tikzpicture}
 \scriptsize
@@ -156,6 +184,7 @@ For example, the text categories in the BNC Baby^[More information on the BNC Ba
             [.{register: news} {applied science} {arts} {commercial} … ] ]
     ]
 \end{tikzpicture}
+\caption{A part of the hierarchical structure of the register-focused metadata within the British National Corpus Baby (as described in \cite{gries2009bigrams}, pp. 3--4).}
 \end{figure*}
 
 <!--
@@ -172,11 +201,11 @@ Signal loss from expression (granularity trade-off) - "The signal loss in tradit
 
 In reality, a strict hierarchy such as the NDC is not able to capture all linguistic variation and situational factors.
 This is evident because the branching factor in the hierarchy, from parent to children, is often a combination of topic, register, and genre differences, which obviously interact at different levels.
-Eventually, the realization of an ontology of variation within and between texts would allow a systematic encoding of the metadata inherent in a document.
-As far as the authors know, such an ontology does not yet exist.
+Eventually, the realization of an ontology of variation within and between texts would allow a systematic encoding of the metadata inherent in a document, but no such ontology yet exists.
 Therefore, for the purposes of this study, we will seek to find which parts of the metadata influence linguistic variation.
 
 In addition, readability [@Sato2008; @Tanaka2010] is an influential factor in/measure of ...
+Concepts like readability are prevalent accross the whole spectrum from character to document, as they refer to different aspects of understanding a text.
 
 ## Hierarchical Classification
 
@@ -189,32 +218,34 @@ Hierarchy flattening techniques:
 
 # Materials: BCCWJ
 
-The BCCWJ contains a wide variety of contemporary written^[One slight exception would be the Minutes of the Diet sub-corpus, which consists of official transcriptions of dialogue.] Japanese documents with associated data of many forms.
-As can be seen in Table \ref{tab:bccwj-t}, the whole corpus consists of approximately 120 million tokens^[Tokens here refer to the Short Unit Words (SUWs) contained in the UniDic morphological dictionary.], and is sub-divided according to general media labels.
+The BCCWJ contains a wide variety of contemporary written^[One slight exception would be the Minutes of the Diet sub-corpus, which consists of official transcriptions of dialogue.] Japanese documents with associated metadata of many forms.
+As can be seen in Table \ref{tab:bccwj-t}, the whole corpus consists of approximately 120 million tokens^[Tokens here refer to the Short Unit Words (SUWs) contained in the UniDic morphological dictionary version 2.1.2 which were extracted using the morphological analyzer MeCab version 0.966.], and is sub-divided according to general media labels.
 
 <!-- FIXME: add sub-corpora and their 'subgroup' metadata in the form of sampling method! -->
 
-Table: Number of tokens, sentences, paragraphs, and documents in the BCCWJ arranged according to media type.\label{tab:bccwj-t}
+Table: Number of tokens, sentences, paragraphs, and documents in the BCCWJ arranged according to media label.\label{tab:bccwj-t}
 
-**Media label**       **Tokens**   **Sentences**   **Paragraphs**  **Documents** **Hierarchy?**
--------------------- ----------- --------------- ---------------- -------------- ---------------------
-Books                 70,472,742       3,155,084        1,552,490         22,058 NDC, C-CODE
-Yahoo! Blogs          13,212,757         943,646          783,871         52,676 Yahoo! topics
-Yahoo! Q&A            12,088,127         780,510          624,616         91,445 Yahoo! topics
-Minutes of the Diet    5,600,649         139,802           45,810            159 place and type
-White papers           5,495,254         139,373          101,587          1,500 govt. division
-Magazines              5,114,752         281,765          155,260          1,996 magazine class.
-Local gov't. reports   4,739,306         255,841          209,679            354 municipality
-Law documents          1,206,481          33,289           25,364            346 subject
-School textbooks       1,126,214          63,370           45,952            412 subject and grade
-Newspapers             1,036,285          50,960           26,546          1,473 daily, evening
-Verse                    237,685          18,974           18,974            252 haiku, etc.
-TOTAL                120,330,252       5,862,614        3,590,149        172,671
+**Code**  **Media label**       **Tokens**   **Sentences**   **Paragraphs**  **Documents** **Hierarchy type**
+--------- -------------------- ----------- --------------- ---------------- -------------- ---------------------
+LB+PB+OB  Books                 70,472,742       3,155,084        1,552,490         22,058 NDC, C-CODE
+OY        Yahoo! Blogs          13,212,757         943,646          783,871         52,676 Yahoo! topics
+OC        Yahoo! Q&A            12,088,127         780,510          624,616         91,445 Yahoo! topics
+OM        Minutes of the Diet    5,600,649         139,802           45,810            159 place and type
+OW        White papers           5,495,254         139,373          101,587          1,500 govt. division
+PM        Magazines              5,114,752         281,765          155,260          1,996 magazine class.
+OP        Local gov't. reports   4,739,306         255,841          209,679            354 municipality
+OL        Law documents          1,206,481          33,289           25,364            346 subject
+OT        School textbooks       1,126,214          63,370           45,952            412 subject and grade
+PN        Newspapers             1,036,285          50,960           26,546          1,473 daily, evening
+OV        Verse                    237,685          18,974           18,974            252 haiku, etc.
+          \textsc{Total}       120,330,252       5,862,614        3,590,149        172,671
 
 Adding to the metadata that is unique to each media, the BCCWJ provides a variety of metadata for varying subsets of the corpus including: author name, gender, author decade of birth, publishing date, publisher name.
-Most importantly for our purposes, up to 4 'genre' labels per document are provided, making it possible to construct different hierarchies from them (see 'Hierarchy?' column in Table \ref{tab:bccwj-t}).
+Most importantly for our purposes, up to 4 'genre' labels per document are provided, making it possible to construct different hierarchies from them (see the 'Hierarchy type' column in Table \ref{tab:bccwj-t}).
 Obviously, these genre labels represent different conceptualizations of 'genre', differing in their inclusion of topic, register, audience, and so on.
 The next section will detail the process of constructing hierarchies from these metadata.
+
+<!-- FIXME: Table of metadata types/features and their shape: hierarchy/tree, nominal, etc... + their distribution. -->
 
 <!--
 ## Metadata
@@ -255,7 +286,7 @@ The relations between different methods of extracting words and collocations fro
 -   choice of statistical test
 
 
-According to (@Biber2009, pp. 40 (Table 2.1); Finegan and Biber's taxonomy of situations!), the above terms differ in their configurations of at least the following situational factors: ....
+According to (@Biber2009, p. 40 (Table 2.1); Finegan and Biber's taxonomy of situations!), the above terms differ in their configurations of at least the following situational factors: ....
 participants,
 relations among participants,
 channel,
@@ -279,9 +310,9 @@ topic (cf. genre as ontology described in @...).
 
 # Method
 
-As we aim to evaluate the discriminatory power of metadata in the modeling of language variation, the relationships between the metadata must be accounted for.
-Subgroup discovery, as described by the MIDOS algorithm [@wrobel1997algorithm], seeks to discover subgroups that have unusual distributional characteristics with respect to the entire population.
-Like MIDOS, we are looking for subgroups that have unusual distributional characteristics with respect to the entire population, but we are also further interested in unusual distributions with respect to the parent subgroup.
+An understanding of the relationships between the metadata is a prerequisite to evaluating the discriminatory power of metadata in the modeling of language variation.
+Subgroup discovery, as described in the MIDOS algorithm [@wrobel1997algorithm], seeks to discover subgroups that have unusual distributional characteristics with respect to the entire population.
+Like MIDOS, we are looking for subgroups that have unusual distributional characteristics with respect to the entire population^[Give reasons why we compare with the global model and not the local complement.], but we are also further interested in unusual distributions with respect to the parent subgroup.
 First we define the language model that will be used to measure differences between different subgroups, and, in the succeeding subsection, detail the algorithm and modifications used to discover subgroups in the BCCWJ.
 
 <!--
@@ -302,7 +333,7 @@ First we define the language model that will be used to measure differences betw
 
 ## Language Model
 
-The language contained in documents and subgroups is simply represented using a vector of word weights, calculated using a variant of the well-known tf-idf (term frequency-inverse document frequency) formulation first proposed by [@spark1972statistical]:
+The language contained in documents and subgroups is represented using a vector of word weights, calculated using a variant of the well-known tf-idf (term frequency-inverse document frequency) formulation first proposed by [@spark1972statistical]:
 
 $$\text{tf}(t, D) = \sum_{i=1}^{N} \text{number of occurrences of } t \text{ in } d_i$$
 
@@ -330,13 +361,14 @@ This model, although simplistic, was chosen as a first step towards introducing 
 ## Subgroup Discovery and Exceptional Model Mining
 
 Algorithm \ref{alg:EMM} gives the general outline of the SD/EMM process.
-We defer explanation to the detailed description offered in [@duivesteijn2013exceptional, pp. 13--30], and rather detail the parameters we used instead.
+We defer a detailed explanation to that offered in [@duivesteijn2013exceptional, pp. 13--30], and rather provide an intuitive account of the algorith as well as detail the parameters we used.
+Intuitively, we search increasingly small subsets fo data constructed from the descriptions made with the refinement operator.
 
 \vspace*{1em}
 \begin{algorithm}[H]
    \scriptsize
    \label{alg:EMM}
-   \caption{Beam search for top-q Exceptional Model Mining (reproduced from \cite{duivesteijn2013exceptional}, pp. 19).}
+   \caption{Beam search for top-q Exceptional Model Mining (reproduced from \cite{duivesteijn2013exceptional}, p. 19).}
    \SetAlgoLined
    \RestyleAlgo{algoruled}
    \DontPrintSemicolon
@@ -378,7 +410,7 @@ We defer explanation to the detailed description offered in [@duivesteijn2013exc
 
 -   Distance function:
 
-    The correlation between two tf-idf vectors $\mathbf{x} = (x_1, x_2,\dotsc, x_n)$ and $\mathbf{y} = (y_1, y_2,\dotsc, y_m)$ is calculated using the sample correlation:
+    The correlation between two tf-idf vectors $\mathbf{x}=(x_1, x_2,\dotsc, x_n)$ and $\mathbf{y}=(y_1, y_2,\dotsc, y_m)$ is calculated using the sample correlation $r$:
 
     $$r = \frac{\sum_i(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_i (x_i-\bar{x})^2 \sum_i(y_i-\bar{y})^2}}.$$
 
@@ -398,7 +430,10 @@ We defer explanation to the detailed description offered in [@duivesteijn2013exc
 
     For nominal $a_i$ with values $v_1,\dotsc, v_g$ we add $\{D \caps (a_i = v_j), D \caps (a_i \ne v_j)\}^g_{j=1}$ to $\eta(D)$.
     The refinement of hierarchical data presents another challenge.
-    Here we must take into account the explicit constraints that hold within hierarchical data (cf. @park2008multi, pp. 2).
+    Here we must take into account the explicit constraints that hold within hierarchical data (cf. @park2008multi, p. 2).
+
+    For ordinal metadata...
+
 
 -   Constraints:
 
@@ -406,7 +441,7 @@ We defer explanation to the detailed description offered in [@duivesteijn2013exc
 
 -   Quality measures:
 
-    Following [@duivesteijn2013exceptional], two different quality measure were considered: $\varphi_{scd}$ and $\varphi_{ent}$.
+    Following [@duivesteijn2013exceptional], two different quality measures were considered: $\varphi_{scd}$ and $\varphi_{ent}$.
     The first quality measure, though statistically-oriented, revealed to be overly sensitive to the large subgroup document sizes the BCCWJ includes (which include over 170,000 documents) and measuring most subgroups' $p$ value as zero.
     Thus the use of $\varphi_{scd}$ was deemed to not be suitable for discovering subgroups in the present data, and other measures were considered:
 
@@ -427,7 +462,7 @@ The first run used $\varphi_{ent}$ as the quality measure, while the second run 
 \begin{table*}
 \centering
 \scriptsize
-\caption{Results of top-q beam search using $\varphi_{ent}$ and $\varphi_{abs}$ as the quality measure (top 10 for each shown).}
+\caption{Results of top-q beam search using $\varphi_{ent}$ and $\varphi_{abs}$ as the quality measure (top 10 for each shown). Labels with no official English transcription translated by author.}
 \label{tab:res}
 \begin{tabular}[htbp]{@{}lrrrrrrrr@{}}
 \toprule
@@ -471,9 +506,9 @@ TODO: use methods to alleviate subgroup redundancy (i.e. similar rules at top).
 
 # Discussion
 
-The preliminary results of subgroup discovery are mostly unsurprising do not reveal much results yet.
+<!-- The preliminary results of subgroup discovery are mostly unsurprising and do not reveal many results yet. -->
 One possibly interesting condition is the \textsc{audience} value from the \textsc{c-code}, as it indeed describes an important element of register that is missing in otherwise more complete metadata such as the NDC hierarchy.
-The NDC hierarchy did not feature strongly in the top results, though further examination of lower results did reveal more 3- and 4-conjoined conditions including the NDC hierarchy.
+The NDC hierarchy did not feature strongly in the top results, though further examination of lower results did reveal more 3- and 4-part conjoined conditions including the NDC hierarchy.
 
 # Conclusion
 
@@ -483,9 +518,14 @@ Further experiments are needed to elucidate the relationships between the differ
 
 # Future Work
 
-Future work should not only look to improve the subgroup discovery task or to improve feature extraction, but to also inform future annotation of corpus metadata, especially that metadata which helps to uncover subgroups with divergent linguistic properties.
-<!--Examine relation between computed similarities to those of the text-external criteria of _katarikake-sei_ [cf. @Forsyth06022013].-->
+Future work should not only look to improve the subgroup discovery task or to improve feature extraction, but to also inform future annotation of corpus metadata, especially those metadata which helps to uncover subgroups with divergent linguistic properties.
+<!--Examine the relation between computed similarities to those of the text-external criteria of _katarikake-sei_ [cf. @Forsyth06022013].-->
 
-Finally, \citeauthor{wu2010fine} introduce a new method of quantifying genre hierarchies in terms of their visual and distributional imbalance based on tree balance entropy scores (\citeyear{wu2010fine}, pp. 755-757).
+Finally, \citeauthor{wu2010fine} (\citeyear{wu2010fine}) introduce a new method of quantifying genre hierarchies in terms of their visual and distributional imbalance based on tree balance entropy scores (pp. 755-757).
 Incorporating these measures could provide an additional quantification of subgroup distributionality alongside the entropy split function $\varphi_{ef}$, especially important in that it would additionally permit comparisons between the different hierarchical metadata within the BCCWJ.
-Finally, these methods would allow the hierarchies present in the BCCWJ to be compared to more established (from the point of view of suitability for register studies) metadata hierarchies such as those of the BNC Baby introduced in \ref{sec:BNCBaby}.
+Finally, these methods would allow the hierarchies present in the BCCWJ to be compared to more established (from the point of view of suitability for register studies) metadata hierarchies such as those of the BNC Baby introduced in \ref{sec:BNCBaby}, or the LOB (CITE).
+
+# Acknowlegments
+
+This research was financially supported by JSPS Foreign Post-Doc Fellowship grant (\#P13303).
+Additionaly, ....
