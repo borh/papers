@@ -1,0 +1,203 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[oneside,paper=a0,fontsize=28pt]{scrartcl}
+
+%\usepackage[utf8]{inputenc}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[no-math]{fontspec}
+\newfontfeature{Microtype}{protrusion=quality;expansion=quality;tracking=true;}
+\defaultfontfeatures{Microtype,Fractions=Off,Scale=MatchLowercase,Ligatures=TeX,
+  SmallCapsFont={RobotoCondensed_Regular},SmallCapsFeatures={Letters=SmallCaps,Renderer=Basic}}
+\setmainfont[
+  BoldFont={RobotoCondensed_Bold},
+  ItalicFont={RobotoCondensed_Italic},
+  BoldItalicFont={RobotoCondensed_BoldItalic},
+  SmallCapsFont={RobotoCondensed_Regular}
+]{RobotoCondensed_Regular}
+\setsansfont[
+  BoldFont={RobotoCondensed_Bold},
+  ItalicFont={RobotoCondensed_Italic},
+  BoldItalicFont={RobotoCondensed_BoldItalic},
+  SmallCapsFont={RobotoCondensed_Regular}
+]{RobotoCondensed_Regular}
+\setmonofont[
+  BoldFont={SourceCodePro_Bold},
+  %ItalicFont={SourceCodePro_Italic},
+  %BoldItalicFont={SourceCodePro_BoldItalic},
+  SmallCapsFont={SourceCodePro_Regular}
+]{SourceCodePro_Regular}
+\usepackage{luatexja}
+%\usepackage{luatexja-fontspec}
+\usepackage{lualatex-math}
+\usepackage{unicode-math}
+\usepackage[fleqn,tbtags]{mathtools}
+\usepackage{xfrac}
+
+\usepackage[normalem]{ulem} % to underline my name
+\usepackage{hyphenat}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber,autocite=inline,hyperref=true,backref=true]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\let\autocite=\parencite
+\bibliography{bibliography/doctors-bibliography}
+
+%\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hmarginratio=1:1,top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage[linesnumbered,algoruled]{algorithm2e}
+\usepackage{longtable}
+\usepackage{booktabs} % Horizontal rules in tables
+\renewcommand{\arraystretch}{0.8}
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+%\renewcommand{\includegraphics}[1]{\Oldincludegraphics[height=.5\textheight]{#1}}
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[height=.4\textheight]{#1}}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\large\bfseries\sffamily} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\titleformat{\section}[block]{\LARGE\scshape\sffamily}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\Large\scshape\sffamily}{\thesubsection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsubsection}[block]{\large\scshape\sffamily}{\thesubsubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{\sffamily $if(shorttitle)$ $shorttitle$ $else$ $title$ $endif$\(\cdot\) $date$ \( \cdot \) $if(publisher)$ $publisher$ $if(volume)$, Vol. $volume$ $endif$ $if(number)$, No. $number$ $endif$ $endif$} % Custom header text
+\fancyfoot[C %RO,LE
+]{\sffamily\thepage} % Custom footer text
+
+
+\usepackage{tikz,tikz-qtree,tikz-qtree-compat}
+\usepackage{tikz-dependency}
+\usetikzlibrary{positioning}
+
+\usepackage{fancybox}
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\sffamily\textbf{$title$} $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$} % Article title
+
+\author{
+  \large
+  \textsc{$author$}\thanks{$author-comment$}\\[2mm] % Your name
+  \normalsize\sffamily $author-affiliation$ \\ % Your institution
+  \normalsize\sffamily \href{mailto:$email$}{$email$} % Your email address
+  $if(author2)$
+  \and
+  \large
+  \textsc{$author2$}\\[2mm]
+  \normalsize\sffamily $author2-affiliation$\\
+  \normalsize\sffamily \href{mailto:$email2$}{$email2$}
+  $endif$
+}
+\date{}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frenchspacing % Reduces space after periods to make text more compact
+\raggedbottom % Makes all pages the height of the text on that page
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+$if(abstract)$
+\begin{abstract}
+
+\noindent $abstract$
+
+\end{abstract}
+$endif$
+
+$if(tags)$
+\begin{centering}
+
+\noindent Keywords:
+$for(tags)$
+\textit{$tags$},
+$endfor$
+
+\end{centering}
+$endif$
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+$if(columns)$
+\begin{multicols}{$columns$}
+$endif$
+
+$body$
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\printbibliography[$if(biblio-title)$title=$biblio-title$$else$title={References}$endif$]
+
+%----------------------------------------------------------------------------------------
+
+$if(columns)$
+\end{multicols}
+$endif$
+
+\end{document}

@@ -1,0 +1,325 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10.5pt,a4paper,numbers=enddot,footsepline]{scrartcl}
+\pagestyle{empty}
+%\usepackage{scrlayer-scrpage}
+%\clearpairofpagestyles
+%  \ohead[]{}
+%  \cfoot[]{}
+%  \chead[]{}
+
+%\usepackage[utf8]{inputenc}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[no-math]{fontspec}
+\newfontfeature{Microtype}{protrusion=quality;expansion=quality;tracking=true;}
+\defaultfontfeatures{Microtype,Fractions=Off,Scale=MatchLowercase,Ligatures=TeX,
+  SmallCapsFeatures={Letters=SmallCaps,Renderer=Basic}}
+\setmainfont[
+  %BoldFont={MinionPro_Bold},
+  %ItalicFont={MinionPro_It},
+  %BoldItalicFont={MinionPro_BoldIt}
+]{TexGyreTermes}
+\setsansfont[
+  %BoldFont={RobotoCondensed_Bold},
+  %ItalicFont={RobotoCondensed_Italic},
+  %BoldItalicFont={RobotoCondensed_BoldItalic},
+  %SmallCapsFont={RobotoCondensed_Regular}
+]{TexGyreTermes}
+%%%\setmonofont[
+%%%  BoldFont={SourceCodePro_Bold},
+%%%  ItalicFont={SourceCodePro_It},
+%%%  BoldItalicFont={SourceCodePro_BoldIt},
+%%%  SmallCapsFont={SourceCodePro_Regular}
+%%%]{SourceCodePro_Regular}
+\setkomafont{section}{\normalsize\bfseries\sffamily} % BCCWJ
+\setkomafont{subsection}{\normalsize\bfseries\sffamily} % BCCWJ
+\usepackage{luatexja}
+%\usepackage{luatexja-fontspec}
+\usepackage[ms,deluxe]{luatexja-preset}
+\usepackage{lualatex-math}
+\usepackage{unicode-math}
+\usepackage[fleqn,tbtags]{mathtools}
+\usepackage{xfrac}
+
+\usepackage[normalem]{ulem} % to underline my name
+\usepackage{hyphenat}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber,autocite=inline,hyperref=true,backref=true]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\let\autocite=\parencite
+\bibliography{bibliography/doctors-bibliography}
+
+%\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hmarginratio=1:1,top=45mm,bottom=26mm,left=30mm,right=30mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage[linesnumbered,algoruled]{algorithm2e}
+\usepackage{longtable}
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{multirow}
+\renewcommand{\arraystretch}{.9}
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\usepackage{tikz,tikz-qtree,tikz-qtree-compat}
+
+\usepackage{fancybox}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\textwidth]{#1}}
+%\renewcommand{\includegraphics}[1]{\Oldincludegraphics[height=.4\textheight]{#1}}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\hypersetup{
+  pdftitle={$title$},
+  pdfsubject={},
+  pdfauthor={$author$},
+  pdfkeywords={$keywords$}
+}
+
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\large\bfseries\sffamily} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\titleformat{\section}[block]{\large\bfseries}{\thesection.}{.5em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large\bfseries}{\thesubsection}{.5em}{} % Change the look of the section titles
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{\thesubsubsection}{.5em}{} % Change the look of the section titles
+
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+\setlength{\parskip}{1pt}
+\setlength{\parsep}{1pt}
+\setlength{\headsep}{1pt}
+\setlength{\topskip}{1pt}
+\setlength{\topmargin}{1pt}
+\setlength{\topsep}{1pt}
+\setlength{\partopsep}{1pt}
+
+\linespread{1.1}
+
+%\usepackage[bottom]{footmisc}
+
+%\long\def\asteriskfootnote#1{\begingroup%
+%\def\thefootnote{\fnsymbol{footnote}}\footnote[1]{#1}\endgroup}
+%
+%\long\def\daggerfootnote#1{\begingroup%
+%\det\thefootnote{\relax\footnote{\hspace*{-2em}† $email$}\endgroup}
+
+%\usepackage{fancyhdr} % Headers and footers
+%\pagestyle{fancyplain} % All pages have headers and footers
+%\fancyhead{} % Blank out the default header
+%\fancyfoot{} % Blank out the default footer
+%\renewcommand{\headrulewidth}{0pt} % remove lines as well
+%%%\fancyfoot[C]{--\thepage--} % Custom footer text
+
+%\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+% \title{\vspace{-5mm}\fontsize{14pt}{10pt}\selectfont\sffamily\textbf{$title$} $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$} % Article title
+%
+% \author{
+%   \large
+%   \textsc{$author$}$if(author-comment)$\thanks{$author-comment$}$endif$\\[2mm] % Your name
+%   \normalsize\sffamily $author-affiliation$
+%   $if(author2)$
+%   \and
+%   \large
+%   \textsc{$author2$}\\[2mm]
+%   \normalsize\sffamily $author2-affiliation$\\
+%   \normalsize\sffamily \href{mailto:$email2$}{$email2$}
+%   $endif$
+% }
+%
+% \title{\vspace{-5mm}\fontsize{14pt}{10pt}\selectfont\sffamily\textbf{$title-ja$} $if(subtitle)$\\\vspace{6pt} \large --\textbf{$subtitle$}-- $endif$} % Article title
+%
+% \author{
+%   \large
+%   \textsc{$author-ja$}$if(author-comment-ja)$\thanks{$author-comment-ja$}$endif$\\[2mm] % Your name
+%   \normalsize\sffamily $author-affiliation-ja$
+%   $if(author2)$
+%   \and
+%   \large
+%   \textsc{$author2$}\\[2mm]
+%   \normalsize\sffamily $author2-affiliation$
+%   $endif$
+% }
+% \date{$date$}
+
+%\newcommand\blfootnote[1]{%
+%  \begingroup
+%  \renewcommand\thefootnote{}\footnote{#1}%
+%  \addtocounter{footnote}{-1}%
+%  \endgroup
+%}
+
+%\makeatletter
+%\def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
+%\makeatother
+
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\normalsize}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frenchspacing % Reduces space after periods to make text more compact
+\raggedbottom % Makes all pages the height of the text on that page
+%\thispagestyle{fancy} % All pages have headers and footers
+
+%\maketitle % Insert title
+
+%\vspace*{1.5em}
+
+\begin{center}{\Large\bfseries $title$}
+\end{center}
+
+\vspace*{1em}
+
+\begin{center}
+\begin{tabular}{ll}
+$author$ & ($author-affiliation$) \textsuperscript{†}
+\end{tabular}
+\end{center}
+\blfootnote{\textsuperscript{†} $email$}
+
+\vspace*{1em}
+
+\begin{center}{\Large\bfseries\gtebfamily $title-ja$}
+\end{center}
+
+\vspace*{1em}
+
+\begin{center}
+\begin{tabular}{ll}
+$author-ja$ & （$author-affiliation-ja$）
+\end{tabular}
+\end{center}
+
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+$if(abstract)$
+\begin{abstract}
+
+\begin{minipage}{0.8\textwidth}
+\noindent $abstract$
+\end{minipage}
+
+\end{abstract}
+$endif$
+
+$if(tags)$
+
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\noindent Keywords:
+$for(tags)$
+\textit{$tags$},
+$endfor$
+\end{minipage}
+\end{center}
+
+$endif$
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+$if(columns)$
+\begin{multicols}{$columns$}
+$endif$
+
+$body$
+
+\vspace*{1em}
+\begin{center}
+  \large\textbf{Acknowledgements}
+\end{center}
+\vspace*{.5em}
+
+\noindent
+$acknowledgments$
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\vspace*{1em}
+\begin{center}
+  \large\textbf{References}
+\end{center}
+\vspace*{.5em}
+
+\printbibliography[heading=none]
+
+%----------------------------------------------------------------------------------------
+
+$if(columns)$
+\end{multicols}
+$endif$
+
+\end{document}
